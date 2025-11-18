@@ -203,6 +203,49 @@
     </div>
 </section>
 
+
+<!-- Struktur Organisasi Section -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Struktur Organisasi Masjid</h2>
+            <p class="text-muted">Struktur kepengurusan Masjid Al Muta'allimin</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            
+            <!-- Barli -->
+            <div class="col-md-4">
+                <div class="card card-custom text-center h-100">
+                    <div class="card-body p-4">
+                        <img src="https://cdn.discordapp.com/attachments/1436537266267750451/1440371081121894551/image.png?ex=691de99a&is=691c981a&hm=05c796edd2d3e037647714958b26a03d8b90cf9838716391004af102743705e0&"
+                             alt="Barli"
+                             class="rounded-circle mb-3 shadow"
+                             width="120">
+                        <h5 class="card-title mb-1">Barli Balado</h5>
+                        <p class="text-muted mb-0">Pengurus Masjid</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Kepin -->
+            <div class="col-md-4">
+                <div class="card card-custom text-center h-100">
+                    <div class="card-body p-4">
+                        <img src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/honkai-star-rail-meme-stickers-1/tray_large.png?adb7e5560a227c6902871e0c8b647376&d=200x200"
+                             alt="Kepin"
+                             class="rounded-circle mb-3 shadow"
+                             width="120">
+                        <h5 class="card-title mb-1">Kepin Ganteng</h5>
+                        <p class="text-muted mb-0">Presiden</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <!-- Location Section -->
 <section class="section-padding">
     <div class="container">
@@ -224,4 +267,38 @@
         </div>
     </div>
 </section>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/6281234567890" 
+   class="wa-floating" 
+   target="_blank">
+    <i class="bi bi-whatsapp"></i>
+</a>
+
+<style>
+.wa-floating {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.wa-floating:hover {
+    transform: scale(1.1);
+    background-color: #1ebe5b;
+}
+</style>
+
 @endsection
