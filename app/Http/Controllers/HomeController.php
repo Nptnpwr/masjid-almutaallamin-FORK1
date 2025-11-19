@@ -7,6 +7,7 @@ use App\Models\News;
 use App\Models\Gallery;
 use App\Models\DonationAccount;
 use App\Models\PrayerTime;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,34 +23,55 @@ class HomeController extends Controller
         return view('home', compact('activities', 'news', 'galleries', 'prayerTime'));
     }
 
-    // Profil page
+    // Profil page 
     public function profil()
     {
-        return view('profil');
+        $profile = Profile::first();
+        
+        if (!$profile) {
+            // Buat data default jika belum ada
+            $profile = Profile::create([
+                'hero_title' => 'Profil Masjid',
+                'hero_subtitle' => 'Mengenal lebih dekat Masjid Al Muta\'allimin Fakultas Teknik Untirta',
+                'about_text' => 'Masjid Al Muta\'allimin Fakultas Teknik Untirta diresmikan pada 14 Februari 2025 dan mampu menampung hingga 780 jamaah. Masjid ini menjadi pusat ibadah, kajian, dan pembinaan rohani civitas akademika, sekaligus sarana membangun keseimbangan antara spiritualitas dan akademik.',
+                'vision' => 'Menjadi pusat ibadah dan pengembangan iman-ilmu di Universitas Sultan Ageng Tirtayasa yang mampu mencetak generasi yang berakhlak mulia, cerdas, dan berdaya saing.',
+                'mission' => json_encode([
+                    'Memfasilitasi kegiatan ibadah yang khusyuk dan berkualitas',
+                    'Menyelenggarakan kajian dan pembinaan keislaman',
+                    'Membangun kebersamaan dan silaturahmi civitas akademika',
+                    'Mengintegrasikan nilai-nilai Islam dalam kehidupan akademik'
+                ]),
+                'capacity' => '780',
+                'established_year' => '2025',
+                'activities' => '5+',
+                'public_access' => '100%',
+                'address' => 'Jl. Jenderal Sudirman KM 3, Kotabumi, Kec. Purwakarta, Kota Cilegon, Banten 42435',
+                'google_maps_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2607240453586!2d106.02115!3d-6.2281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTMnNDEuMiJTIDEwNsKwMDEnMTYuMSJF!5e0!3m2!1sid!2sid!4v1234567890',
+                'whatsapp_number' => '6281234567890'
+            ]);
+        }
+
+        return view('profil', compact('profile'));
     }
 
-    // Jadwal Sholat page
     public function jadwal()
     {
         $prayerTime = PrayerTime::whereDate('date', now())->first();
         return view('jadwal', compact('prayerTime'));
     }
 
-    // Kegiatan page
     public function kegiatan()
     {
         $activities = Activity::latest()->paginate(9);
         return view('kegiatan', compact('activities'));
     }
 
-    // Berita list page
     public function berita()
     {
         $news = News::latest()->paginate(9);
         return view('berita', compact('news'));
     }
 
-    // Berita detail page
     public function beritaDetail($id)
     {
         $newsItem = News::findOrFail($id);
@@ -57,14 +79,12 @@ class HomeController extends Controller
         return view('news.detail', compact('newsItem', 'recentNews'));
     }
 
-    // Galeri page
     public function galeri()
     {
         $galleries = Gallery::latest()->paginate(12);
         return view('galeri', compact('galleries'));
     }
 
-    // Donasi page
     public function donasi()
     {
         $donations = DonationAccount::all();

@@ -4,7 +4,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrayerTimeController;
 use App\Http\Controllers\Admin\ScheduleAdminController;
-use App\Models\PrayerTime;
+use App\Http\Controllers\ProfileEditController; // <- TAMBAH INI
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,10 @@ Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
 Route::get('/berita/{id}', [HomeController::class, 'beritaDetail'])->name('berita.detail');
 Route::get('/galeri', [HomeController::class, 'galeri'])->name('galeri');
 Route::get('/donasi', [HomeController::class, 'donasi'])->name('donasi');
+
+// TAMBAH ROUTE UNTUK EDIT PROFIL
+Route::get('/profil/edit', [ProfileEditController::class, 'edit'])->name('profil.edit');
+Route::post('/profil/update', [ProfileEditController::class, 'update'])->name('profil.update');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('schedules', ScheduleAdminController::class)->except(['show']);
